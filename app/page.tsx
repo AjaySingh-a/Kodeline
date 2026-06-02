@@ -393,13 +393,13 @@ export default function Home() {
             {[
               {
                 name: "Ajay",
-                role: "DESIGN & CLIENT LEAD",
-                bio: "CS graduate with an AI specialisation. Leads design and client relationships. Handles everything from wireframes and UI to scoping and delivery. When you work with Kodeline, you talk directly to the person building your product.",
+                role: "DESIGN & TECH LEAD",
+                bio: "CS graduate with an AI specialisation. Leads all development — web, app, and AI integration. Has shipped full-stack products and AI-powered tools used by real teams. Obsessed with writing clean code that's fast and easy to maintain.",
               },
               {
                 name: "Dev",
-                role: "DEVELOPMENT LEAD",
-                bio: "CS graduate with an AI specialisation. Leads all development — web, app, and AI integration. Has shipped full-stack products and AI-powered tools used by real teams. Obsessed with writing clean code that's fast and easy to maintain.",
+                role: "DESIGN & CLIENT LEAD",
+                bio: "CS graduate with an AI specialisation. Leads design and client relationships. Handles everything from wireframes and UI to scoping and delivery. When you work with Kodeline, you talk directly to the person building your product.",
               },
             ].map(p => (
               <div key={p.name}>
