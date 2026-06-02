@@ -25,21 +25,21 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Codeline — AI tools and MVPs",
+  title: "Kodeline — AI tools and MVPs",
   description:
     "A two-person AI development studio. We build internal AI tools and MVPs for D2C brands and edtech companies. Internal tools in 2 weeks. MVPs in 3. Based in Delhi, working worldwide.",
   openGraph: {
-    title: "Codeline — AI tools and MVPs",
+    title: "Kodeline — AI tools and MVPs",
     description:
       "A two-person AI development studio. We build internal AI tools and MVPs for D2C brands and edtech companies.",
     url: "https://codeline.vercel.app",
-    siteName: "Codeline",
+    siteName: "Kodeline",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Codeline — AI tools and MVPs",
+    title: "Kodeline — AI tools and MVPs",
     description:
       "A two-person AI development studio. We build internal AI tools and MVPs for D2C brands and edtech companies.",
   },

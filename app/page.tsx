@@ -77,7 +77,7 @@ function ContactForm() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: "70d42692-3358-4c4d-9f94-09f79bbc6ba4",
-          subject: `New enquiry from ${form.firstName} ${form.lastName} — Codeline`,
+          subject: `New enquiry from ${form.firstName} ${form.lastName} — Kodeline`,
           from_name: `${form.firstName} ${form.lastName}`,
           email: form.email,
           mobile: form.mobile,
@@ -174,7 +174,7 @@ export default function Home() {
           height: 56, display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
           <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 14, letterSpacing: "0.04em", fontWeight: 500 }}>
-            Codeline
+            Kodeline
           </span>
           <div className="nav-links" style={{ display: "flex", gap: 32 }}>
             {["Work", "Services", "Team", "Contact"].map(item => (
@@ -370,7 +370,7 @@ export default function Home() {
           </h2>
           <div className="team-grid">
             {[
-              { name: "Ajay", role: "BUILDER · CLIENT LEAD", bio: "CS graduate with an AI specialisation. Builds end-to-end and handles every client relationship personally. When you work with Codeline, you talk directly to the person building your product — not a project manager." },
+              { name: "Ajay", role: "BUILDER · CLIENT LEAD", bio: "CS graduate with an AI specialisation. Builds end-to-end and handles every client relationship personally. When you work with Kodeline, you talk directly to the person building your product — not a project manager." },
               { name: "Dev",  role: "BUILDER · TECH LEAD",   bio: "CS graduate with an AI specialisation. Leads the technical build. Has shipped AI tools and full-stack products used by real teams in production. Obsessed with making complex technology feel simple." },
             ].map(p => (
               <div key={p.name}>
@@ -429,7 +429,7 @@ export default function Home() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div className="footer-grid">
             <div>
-              <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 13, display: "block", marginBottom: 4 }}>Codeline</span>
+              <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 13, display: "block", marginBottom: 4 }}>Kodeline</span>
               <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 12, color: "var(--text-muted)" }}>&copy; 2026</span>
             </div>
             <div>
@@ -444,7 +444,7 @@ export default function Home() {
           </div>
           <div style={{ marginTop: "clamp(40px,6vw,64px)", overflow: "hidden" }}>
             <span className="wordmark" style={{ fontFamily: "var(--font-mono), monospace", display: "block", color: "var(--border)", lineHeight: 1, letterSpacing: "-0.03em", userSelect: "none", fontWeight: 700 }}>
-              CODELINE
+              KODELINE
             </span>
           </div>
         </div>
