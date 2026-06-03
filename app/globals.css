@@ -212,6 +212,7 @@ body { background: var(--bg); color: var(--text-primary); -webkit-font-smoothing
   font-size: 11px; letter-spacing: 0.1em;
   color: var(--text-muted); text-decoration: none;
   text-transform: uppercase; padding-top: 12px;
+  padding-left: 40px; padding-right: 8px;
   transition: color 0.2s ease; white-space: nowrap;
 }
 .project-read:hover { color: var(--accent); }

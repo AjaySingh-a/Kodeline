@@ -214,7 +214,7 @@ export default function Home() {
                   background: "var(--accent)", boxShadow: "0 0 8px rgba(232,212,160,0.7)",
                   animation: "blink 2s ease-in-out infinite",
                 }} />
-                DESIGN & DEVELOPMENT STUDIO, EST. 2026
+                DESIGN & DEVELOPMENT STUDIO, EST. 2025
               </p>
 
               <h1 className="hero-headline hero-heading" style={{
@@ -281,9 +281,6 @@ export default function Home() {
                   From landing pages to full-stack web apps to cross-platform mobile apps. We build with modern tech — fast-loading, mobile-first, and built to scale as your business grows. No templates, no shortcuts.
                 </p>
               </div>
-              <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: 11, letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginTop: 32, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
-                WEBSITES FROM &#8377;30,000 &middot; APPS FROM &#8377;75,000 &middot; 2–4 WEEKS
-              </p>
             </div>
 
             {/* Card 2 — Design */}
@@ -297,9 +294,6 @@ export default function Home() {
                   Brand identity, UI design, and prototypes. We design and build in the same team — so what you see is exactly what gets built.
                 </p>
               </div>
-              <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: 11, letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginTop: 32, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
-                FROM &#8377;20,000 &middot; 1–2 WEEKS
-              </p>
             </div>
 
             {/* Card 3 — AI Integration */}
@@ -313,9 +307,6 @@ export default function Home() {
                   Chatbots, smart search, document automation, personalised content — bolt-on or built-in.
                 </p>
               </div>
-              <p style={{ fontFamily: "var(--font-mono), monospace", fontSize: 11, letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginTop: 24, paddingTop: 16, borderTop: "1px solid var(--border)" }}>
-                FROM &#8377;40,000 &middot; 2 WEEKS
-              </p>
             </div>
 
             {/* Card 4 — How it works */}
@@ -356,24 +347,21 @@ export default function Home() {
             {[
               {
                 num: "01",
-                name: "Document Automation Platform",
-                context: "NON-PROFIT · DELHI · 2024",
-                description: "Designed and built a full-stack internal tool that auto-generates personalised training decks from a single brief. Clean dashboard UI, one-click generation, instant download. Cut prep time from 6+ hours to under 10 minutes — used across 12 programs in its first quarter.",
-                stack: ["NEXT.JS", "PYTHON", "AI"],
+                name: "Inspiring Seniors Foundation",
+                context: "NGO · DELHI · 2024",
+                description: "Designed and built the full website for Inspiring Seniors Foundation — an NGO dedicated to empowering seniors to live healthy, active, and purposeful lives. The site lets seniors join as members, groups, or proposers; discover programs across health, engagement, and wellness; and access a dedicated Health Hub with fitness challenges and expert-led sessions. Clean UI, mobile-friendly, and built to scale with the foundation's growing community.",
+                stack: ["WEBSITE", "NGO", "UI/UX", "FLUTTER"],
+                images: ["/isf-1.png", "/isf-2.png", "/isf-3.png"],
+                link: "https://inspiringseniors.org/",
               },
               {
                 num: "02",
-                name: "AI-Powered Training Web App",
-                context: "NON-PROFIT · DELHI · 2024",
-                description: "End-to-end design and development of a training platform — custom UI, learner dashboards, and an AI engine that generates personalised learning paths and assessments for each user. Scaled to 40+ active users without any extra headcount on the client side.",
-                stack: ["NEXT.JS", "PYTHON", "UI/UX", "AI"],
-              },
-              {
-                num: "03",
-                name: "Internal Operations Dashboard",
-                context: "NON-PROFIT · DELHI · 2024",
-                description: "Designed and built a suite of internal tools for an operations team — automated report generation, data management, and document workflows. Single dashboard, clean UI, zero manual work. Saved the team 15 hours every week.",
-                stack: ["WEB APP", "AUTOMATION", "DASHBOARD"],
+                name: "OOTER — Outdoor Ad Booking Platform",
+                context: "ADTECH · INDIA · 2025",
+                description: "AdTech platform that digitises the end-to-end process of booking outdoor advertising — hoardings, billboards, and more. Brings transparency to a traditionally opaque market: real-time media visibility, instant booking, live tracking, and verified media images. Built for Adbook Communication Pvt. Ltd.",
+                stack: ["MOBILE APP", "ADTECH", "REACT NATIVE", "UI/UX"],
+                images: ["/ooter-app.png", "/ooter-1.png", "/ooter-2.jpg"],
+                link: "https://play.google.com/store/apps/details?id=com.ooter.app",
               },
             ].map(p => <ProjectRow key={p.num} {...p} />)}
           </div>
@@ -479,8 +467,9 @@ export default function Home() {
 }
 
 /* ── ProjectRow ──────────────────────────────────────────────── */
-function ProjectRow({ num, name, context, description, stack }: {
+function ProjectRow({ num, name, context, description, stack, images, link }: {
   num: string; name: string; context: string; description: string; stack: string[];
+  images?: string[]; link?: string;
 }) {
   return (
     <div className="project-row">
@@ -492,8 +481,36 @@ function ProjectRow({ num, name, context, description, stack }: {
         <div className="project-stack">
           {stack.map(tag => <span key={tag} className="stack-tag">{tag}</span>)}
         </div>
+        {images && images.length > 0 && (
+          <div style={{ marginTop: 24, display: "flex", gap: 12, overflowX: "auto", paddingBottom: 4 }}>
+            {images.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={i}
+                src={src}
+                alt={`${name} screenshot ${i + 1}`}
+                style={{
+                  height: 200,
+                  width: "auto",
+                  flexShrink: 0,
+                  borderRadius: 10,
+                  border: "1px solid var(--border)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                  display: "block",
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
-      <a href="#work" className="project-read">READ &rarr;</a>
+      <a
+        href={link ?? "#work"}
+        target={link ? "_blank" : undefined}
+        rel={link ? "noopener noreferrer" : undefined}
+        className="project-read"
+      >
+        {link ? "VIEW →" : "READ →"}
+      </a>
     </div>
   );
 }
