@@ -25,9 +25,9 @@ yarn-error.log*
 # vercel
 .vercel
 
-# screenshots
-*.png
-*.jpg
+# screenshots (root level only, not public assets)
+/*.png
+/*.jpg
 
 # typescript
 *.tsbuildinfo
