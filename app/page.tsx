@@ -142,12 +142,92 @@ function ContactForm() {
   );
 }
 
+/* ── Theme helpers ───────────────────────────────────────────── */
+const LIGHT: Record<string, string> = {
+  "--bg": "#F5F2EC",
+  "--text-primary": "#111110",
+  "--text-muted": "#6E6A64",
+  "--accent": "#8A6A15",
+  "--card": "#EDEAE4",
+  "--card-hover": "#E5E2DC",
+  "--border": "#D4D1CA",
+  "--nav-bg": "rgba(245,242,236,0.88)",
+  "--dot-color": "#C5C2BB",
+  "--impact-bg": "#E8E5DF",
+  "--impact-border": "#CCCAC4",
+  "--impact-header-bg": "#DDD9D2",
+  "--impact-header-border": "#C8C5BE",
+  "--impact-row-border": "#D0CDC7",
+  "--bar-track-bg": "#C0BDB6",
+  "--form-bg": "#E8E5DF",
+  "--form-border": "#CCCAC4",
+  "--form-placeholder": "#AAA7A0",
+  "--card-hover-border": "#BCBAB3",
+  "--row-hover": "rgba(0,0,0,0.028)",
+};
+
+const DARK: Record<string, string> = {
+  "--bg": "#0A0A0A",
+  "--text-primary": "#F5F1E8",
+  "--text-muted": "#8A8680",
+  "--accent": "#E8D4A0",
+  "--card": "#141414",
+  "--card-hover": "#181818",
+  "--border": "#1F1F1F",
+  "--nav-bg": "rgba(10,10,10,0.85)",
+  "--dot-color": "#272727",
+  "--impact-bg": "#0d0d0d",
+  "--impact-border": "#242424",
+  "--impact-header-bg": "#111111",
+  "--impact-header-border": "#1e1e1e",
+  "--impact-row-border": "#1a1a1a",
+  "--bar-track-bg": "#1e1e1e",
+  "--form-bg": "#111111",
+  "--form-border": "#222222",
+  "--form-placeholder": "#3a3a3a",
+  "--card-hover-border": "#2c2c2c",
+  "--row-hover": "rgba(255,255,255,0.018)",
+};
+
+function applyTheme(t: "dark" | "light") {
+  const vars = t === "light" ? LIGHT : DARK;
+  const root = document.documentElement;
+  root.setAttribute("data-theme", t);
+  Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
+}
+
+function ThemeToggle({ theme, onToggle }: { theme: "dark" | "light"; onToggle: () => void }) {
+  const isLight = theme === "light";
+  return (
+    <button className="theme-toggle" onClick={onToggle} aria-label="Toggle theme">
+      <span className="toggle-icon">{isLight ? "☀" : "☾"}</span>
+      <span className={`toggle-track${isLight ? " is-light" : ""}`}>
+        <span className={`toggle-thumb${isLight ? " is-light" : ""}`} />
+      </span>
+    </button>
+  );
+}
+
 /* ── Page ────────────────────────────────────────────────────── */
 export default function Home() {
   const servicesRef = useReveal();
   const workRef     = useReveal();
   const teamRef     = useReveal();
   const contactRef  = useReveal();
+
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
+    const initial = saved ?? "dark";
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    applyTheme(next);
+    localStorage.setItem("theme", next);
+  };
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--text-primary)", fontFamily: "var(--font-geist), sans-serif" }}>
@@ -157,7 +237,7 @@ export default function Home() {
         position: "sticky", top: 0, zIndex: 50,
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
         borderBottom: "1px solid var(--border)",
-        background: "rgba(10,10,10,0.8)",
+        background: "var(--nav-bg)",
       }}>
         <nav style={{
           maxWidth: 1100, margin: "0 auto",
@@ -179,14 +259,17 @@ export default function Home() {
               >{item}</a>
             ))}
           </div>
-          <a href="mailto:kodelineofficial@gmail.com" style={{
-            fontFamily: "var(--font-mono), monospace", fontSize: 13,
-            color: "var(--text-muted)", textDecoration: "none",
-            letterSpacing: "0.02em", transition: "color 0.2s ease",
-          }}
-            onMouseEnter={e => (e.currentTarget.style.color = "var(--accent)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}
-          >kodelineofficial@gmail.com</a>
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <a href="mailto:kodelineofficial@gmail.com" className="nav-email" style={{
+              fontFamily: "var(--font-mono), monospace", fontSize: 13,
+              color: "var(--text-muted)", textDecoration: "none",
+              letterSpacing: "0.02em", transition: "color 0.2s ease",
+            }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}
+            >kodelineofficial@gmail.com</a>
+          </div>
         </nav>
       </header>
 
@@ -195,7 +278,7 @@ export default function Home() {
         <div className="dot-grid" />
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 20%, #0A0A0A 100%)",
+          background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 20%, var(--bg) 100%)",
         }} />
         <div style={{
           maxWidth: 1100, margin: "0 auto", width: "100%",
