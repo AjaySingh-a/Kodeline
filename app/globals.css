@@ -121,6 +121,18 @@ body {
 /* ── Nav ────────────────────────────────────────────────────── */
 @media (max-width: 640px) { .nav-links { display: none !important; } }
 
+/* ── Logo ───────────────────────────────────────────────────── */
+.nav-logo {
+  height: 30px !important;
+  width: auto !important;
+  max-width: 160px !important;
+  display: block;
+  transition: filter 0.35s ease;
+}
+html[data-theme="light"] .nav-logo {
+  filter: brightness(0);
+}
+
 /* ── Theme toggle ───────────────────────────────────────────── */
 .theme-toggle {
   background: transparent;
@@ -422,3 +434,26 @@ body {
 
 /* ── Wordmark ───────────────────────────────────────────────── */
 .wordmark { font-size: clamp(48px, 15.5vw, 180px); }
+
+/* ── WhatsApp float ─────────────────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 100;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
