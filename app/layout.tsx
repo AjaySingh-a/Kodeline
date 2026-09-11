@@ -1,37 +1,28 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Instrument_Serif } from "next/font/google";
-import { JetBrains_Mono } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
+import SiteChrome from "@/components/SiteChrome";
 
-const geist = Geist({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-sora",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Kodeline — Web, App & Design Studio",
+  title: "Kodeline — Design. Develop. Deliver.",
   description:
-    "A two-person studio building websites, mobile apps, and digital products — with AI integration built in. Based in Delhi, working worldwide.",
+    "Kodeline is a design and development studio building digital experiences that are clean, functional, and impactful. Based in Delhi, working worldwide.",
+  icons: {
+    icon: [{ url: "/kodeline-mark.svg", type: "image/svg+xml" }],
+    shortcut: "/kodeline-mark.svg",
+    apple: "/kodeline-mark.svg",
+  },
   openGraph: {
-    title: "Kodeline — Web, App & Design Studio",
+    title: "Kodeline — Design. Develop. Deliver.",
     description:
-      "A two-person studio building websites, mobile apps, and digital products — with AI integration built in.",
+      "A design and development studio building digital experiences that are clean, functional, and impactful.",
     url: "https://codeline.vercel.app",
     siteName: "Kodeline",
     locale: "en_US",
@@ -39,12 +30,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kodeline — Web, App & Design Studio",
+    title: "Kodeline — Design. Develop. Deliver.",
     description:
-      "A two-person studio building websites, mobile apps, and digital products — with AI integration built in.",
+      "A design and development studio building digital experiences that are clean, functional, and impactful.",
   },
   metadataBase: new URL("https://codeline.vercel.app"),
 };
+
+const themeInitScript = `(function(){try{var t=localStorage.getItem('kl-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -54,10 +47,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={sora.variable}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning>{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body suppressHydrationWarning>
+        <SiteChrome>{children}</SiteChrome>
+      </body>
     </html>
   );
 }

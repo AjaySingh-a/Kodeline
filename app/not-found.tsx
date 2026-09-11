@@ -9,17 +9,17 @@ export default function NotFound() {
         justifyContent: "center",
         minHeight: "80vh",
         flexDirection: "column",
-        gap: 16,
-        fontFamily: "monospace",
+        gap: 18,
+        fontFamily: "var(--font-sora), system-ui, sans-serif",
       }}
     >
-      <span style={{ fontSize: 48, color: "#E8D4A0" }}>404</span>
-      <p style={{ color: "#8A8680", fontSize: 14 }}>Page not found.</p>
+      <span style={{ fontSize: 72, fontWeight: 800, letterSpacing: "-0.04em", color: "var(--text)" }}>404</span>
+      <p style={{ color: "var(--muted)", fontSize: 14 }}>Page not found.</p>
       <Link
         href="/"
-        style={{ color: "#E8D4A0", fontSize: 13, fontFamily: "monospace" }}
+        className="link-arrow"
       >
-        Back home
+        Back home <span aria-hidden>→</span>
       </Link>
     </div>
   );

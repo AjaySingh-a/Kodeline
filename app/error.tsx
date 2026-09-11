@@ -9,9 +9,9 @@ export default function Error({
   return (
     <div
       style={{
-        background: "#0A0A0A",
-        color: "#F5F1E8",
-        fontFamily: "monospace",
+        background: "var(--bg)",
+        color: "var(--text)",
+        fontFamily: "var(--font-sora), system-ui, sans-serif",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -20,18 +20,20 @@ export default function Error({
         gap: 16,
       }}
     >
-      <p style={{ color: "#8A8680", fontSize: 14 }}>Something went wrong.</p>
+      <p style={{ color: "var(--muted)", fontSize: 14 }}>Something went wrong.</p>
       <button
         onClick={reset}
         style={{
-          color: "#E8D4A0",
+          color: "var(--accent)",
           background: "none",
-          border: "1px solid #1F1F1F",
+          border: "1px solid var(--border)",
           padding: "8px 16px",
           borderRadius: 6,
           cursor: "pointer",
-          fontFamily: "monospace",
+          fontFamily: "var(--font-sora), system-ui, sans-serif",
           fontSize: 12,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
         }}
       >
         Try again
