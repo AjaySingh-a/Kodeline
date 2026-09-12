@@ -422,7 +422,7 @@ a { color: inherit; text-decoration: none; }
 .showcase-txt.abs { position: absolute; inset: 0; }
 .showcase-img-frame {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border: 1px solid var(--line);
 }
@@ -558,7 +558,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
-.stack-card-media { position: relative; aspect-ratio: 16 / 8; overflow: hidden; background-color: var(--surface); }
+.stack-card-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background-color: var(--surface); }
 .stack-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
 .stack-card-inner:hover .stack-card-media img { transform: scale(1.03); }
 .stack-card-body {
@@ -606,62 +606,28 @@ a { color: inherit; text-decoration: none; }
 }
 .detail-gallery { padding: clamp(48px, 7vw, 88px) 0 24px; }
 .detail-next { padding: clamp(48px, 7vw, 90px) 0 clamp(64px, 9vw, 120px); }
-.detail-hero-image {
+/* Hero and mid-page banner are rendered at their natural 2/1 ratio — no cropping,
+   so the mockups read the same on a 27" display and on a phone. */
+.detail-hero-image,
+.detail-banner {
   display: block;
   width: 100%;
   height: auto;
-}
-.detail-hero {
-  position: relative;
-  height: clamp(300px, 52vw, 620px);
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  border-bottom: 1px solid var(--line);
-}
-.hero-bg-layer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -16%;
-  height: 132%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
   background-color: var(--surface);
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
+}
+.detail-banner {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 @media (max-width: 720px) {
   .detail-overview-grid { grid-template-columns: 1fr; gap: 36px; }
   .detail-hero-meta { gap: 16px; }
   .detail-hero-cat { font-size: 9px; letter-spacing: 0.12em; }
   .detail-project-number { display: none; }
-  .detail-hero { height: 58vw; min-height: 220px; }
 }
-.detail-banner {
-  position: relative;
-  height: 66vh;
-  min-height: 420px;
-  overflow: hidden;
-  margin: 0;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-.detail-banner-bg {
-  position: absolute;
-  left: 0; right: 0; top: -16%; height: 132%;
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
-}
-.detail-banner-contain {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--surface);
-}
-.detail-banner-contain img { height: 84%; width: auto; max-width: 88%; object-fit: contain; }
 .next-project-card {
   display: flex;
   align-items: center;
@@ -782,17 +748,20 @@ a { color: inherit; text-decoration: none; }
   .hscroll-panel { width: calc((100vh - 245px) * 4 / 3); }
 }
 
-/* Selected screens — masonry gallery on the project detail page */
-.case-gallery { columns: 2; column-gap: clamp(16px, 2.4vw, 30px); }
-@media (max-width: 720px) { .case-gallery { columns: 1; } }
+/* Selected screens — even 4/3 grid on the project detail page */
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 30px);
+}
+@media (max-width: 720px) { .case-gallery { grid-template-columns: 1fr; } }
 .case-gallery .case-shot {
-  break-inside: avoid;
-  margin: 0 0 clamp(16px, 2.4vw, 30px);
+  margin: 0;
   border: 1px solid var(--line);
   background: var(--surface);
   overflow: hidden;
 }
-.case-gallery .case-shot img { display: block; width: 100%; height: auto; }
+.case-gallery .case-shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 .case-gallery .case-shot figcaption {
   padding: 13px 16px;
   font-size: 11px;
@@ -857,11 +826,19 @@ a { color: inherit; text-decoration: none; }
 .team-card { background: transparent; border-bottom: 1px solid var(--line); }
 .team-card:nth-child(odd) { border-right: 1px solid var(--line); }
 .team-avatar {
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 4 / 5;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: var(--text);
+}
+.team-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
 }
 .team-avatar span {
   font-size: clamp(52px, 8vw, 92px);

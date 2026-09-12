@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
-import ParallaxSection from "@/components/ParallaxSection";
 import HorizontalScroll from "@/components/HorizontalScroll";
 import { getProject, nextProject, projects } from "@/lib/data";
 
@@ -36,19 +35,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
       </header>
       <div className="kl-wrap">
-        {project.slug === "isf" ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            className="detail-hero-image"
-            src={project.heroImg}
-            alt="Inspiring Seniors Foundation website — Health & Wellness"
-            width={2400}
-            height={1000}
-            fetchPriority="high"
-          />
-        ) : (
-          <ParallaxSection image={project.heroImg} className="detail-hero" speed={0.08} />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="detail-hero-image"
+          src={project.heroImg}
+          alt={`${project.title} — project overview`}
+          width={2400}
+          height={1200}
+          fetchPriority="high"
+        />
       </div>
 
       <section className="detail-overview">
@@ -104,16 +99,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {project.panels && project.panels.length > 0 ? (
         <HorizontalScroll panels={project.panels} />
-      ) : project.banner.fit === "cover" ? (
-        <ParallaxSection image={project.banner.src} className="detail-banner" speed={0.14} />
-      ) : (
-        <div className="detail-banner">
-          <div className="detail-banner-contain">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={project.banner.src} alt={`${project.title} app screen`} />
-          </div>
-        </div>
-      )}
+      ) : project.banner ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          className="detail-banner"
+          src={project.banner}
+          alt={`${project.title} — product and brand`}
+          width={2400}
+          height={1200}
+          loading="lazy"
+        />
+      ) : null}
 
       {project.gallery && project.gallery.length > 0 && (
         <section className="detail-gallery">
@@ -125,7 +121,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {project.gallery.map((shot, i) => (
                 <Reveal key={shot.src} delay={(i % 2) * 0.05} as="figure" className="case-shot">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={shot.src} alt={shot.caption ?? `${project.title} screen`} loading="lazy" />
+                  <img src={shot.src} alt={shot.caption ?? `${project.title} screen`} width={1600} height={1200} loading="lazy" />
                   {shot.caption && <figcaption>{shot.caption}</figcaption>}
                 </Reveal>
               ))}

@@ -10,9 +10,9 @@ export default function WorkPage() {
       <section style={{ padding: "150px 0 60px" }}>
         <div className="kl-wrap">
           <Reveal>
-            <div className="kicker" style={{ marginBottom: 24 }}>Selected Work — 2024 → 2025</div>
+            <div className="kicker" style={{ marginBottom: 24 }}>Selected Work — 2024 → 2026</div>
             <h1 style={{ fontSize: "clamp(44px,7vw,96px)", letterSpacing: "-0.035em", fontWeight: 600, lineHeight: 1, maxWidth: "14ch" }}>
-              Three projects, shipped end to end.
+              Four projects, shipped end to end.
             </h1>
           </Reveal>
         </div>

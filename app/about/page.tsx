@@ -48,7 +48,14 @@ export default function AboutPage() {
           <div className="team-grid-kl">
             {team.map(m => (
               <Reveal key={m.name} className="team-card">
-                <div className="team-avatar"><span>{m.initial}</span></div>
+                <div className="team-avatar">
+                  {m.photo ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={m.photo} alt={`${m.name} — ${m.role}`} width={1200} height={1500} loading="lazy" />
+                  ) : (
+                    <span>{m.initial}</span>
+                  )}
+                </div>
                 <div style={{ padding: 32 }}>
                   <h3 style={{ fontSize: 26, letterSpacing: "-0.02em", fontWeight: 600, marginBottom: 6 }}>{m.name}</h3>
                   <div style={{ color: "var(--accent)", fontSize: 15, fontWeight: 500, marginBottom: 16 }}>{m.role}</div>
